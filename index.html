@@ -153,7 +153,20 @@ footer{background:var(--cloud);padding:56px 0 36px;font-size:.9rem;color:var(--g
 .gate-box .cta{justify-content:center}
 #denied{display:none;color:#d70015;margin:16px 0 0;font-weight:500}
 
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* smoke vibe: real smoke photos (shot on black), inverted to gray wisps and multiplied onto the light page */
+.smoky{position:relative;isolation:isolate;overflow:hidden}
+.smoky>.wrap{position:relative;z-index:1}
+.smoke-layer{position:absolute;inset:-10% -5%;z-index:0;pointer-events:none;background-size:cover;background-position:center;
+  filter:invert(1) grayscale(1) contrast(1.1);mix-blend-mode:multiply;opacity:.28;animation:drift 40s ease-in-out infinite alternate}
+.smoke-a{background-image:url("https://images.unsplash.com/photo-1696255400336-05e8eb84f01a?auto=format&fit=crop&w=2000&q=60")}
+.smoke-b{background-image:url("https://images.unsplash.com/photo-1536405528985-0ab8ba47f25e?auto=format&fit=crop&w=2000&q=60");opacity:.2;animation-duration:55s}
+.smoke-c{background-image:url("https://images.unsplash.com/photo-1597299407241-638aa26e56c6?auto=format&fit=crop&w=2000&q=60");opacity:.22;animation-duration:48s;animation-direction:alternate-reverse}
+.smoke-green{position:absolute;z-index:0;pointer-events:none;width:46vw;height:46vw;border-radius:50%;filter:blur(90px);background:radial-gradient(circle,rgba(60,240,60,.22),transparent 65%);right:-8vw;top:-6vw;animation:drift 30s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate3d(-2%,1%,0) scale(1)}to{transform:translate3d(3%,-3%,0) scale(1.08)}}
+.hero-img,.why-item{position:relative;z-index:1}
+.why-item{background:rgba(255,255,255,.88);backdrop-filter:blur(6px)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -190,7 +203,8 @@ footer{background:var(--cloud);padding:56px 0 36px;font-size:.9rem;color:var(--g
 </header>
 
 <main id="top">
-<section class="hero">
+<section class="hero smoky">
+  <div class="smoke-layer smoke-a" aria-hidden="true"></div><div class="smoke-green" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div>
       <h1>Conway's smoke and vape shop.</h1>
@@ -260,7 +274,8 @@ footer{background:var(--cloud);padding:56px 0 36px;font-size:.9rem;color:var(--g
   </div>
 </section>
 
-<section class="why" id="why">
+<section class="why smoky" id="why">
+  <div class="smoke-layer smoke-b" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-title">
       <h2>Why customers keep coming back</h2>
@@ -301,7 +316,8 @@ footer{background:var(--cloud);padding:56px 0 36px;font-size:.9rem;color:var(--g
   </div>
 </section>
 
-<section id="reviews" style="padding-top:20px">
+<section id="reviews" class="smoky" style="padding-top:20px">
+  <div class="smoke-layer smoke-c" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-title"><h2>Loved by Conway</h2></div>
     <div class="score">
